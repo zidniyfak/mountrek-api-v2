@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('mountains', function (Blueprint $table) {
             $table->id();
-            $table->string('mountains_name', 50);
-            $table->string('region', 50);
+            $table->string('name', 50);
+            $table->string('location', 50);
             $table->integer('altitude')->default(0);
-            $table->enum('mountains_status', ['Aktif', 'Tidak Aktif'])->default('Tidak Aktif');
-            $table->string('mountains_type', 50)->default("-");
-            $table->decimal('latitude', 20, 15)->default(0.0);
-            $table->decimal('longitude', 20, 15)->default(0.0);
-            $table->text('description')->nullable();
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Tidak Aktif');
+            $table->string('type', 50)->default("-");
+            $table->decimal('lat', 20, 15)->default(0.0);
+            $table->decimal('long', 20, 15)->default(0.0);
+            $table->text('desc')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
             $table->softDeletes();

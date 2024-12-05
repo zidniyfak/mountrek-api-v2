@@ -13,23 +13,26 @@ return new class extends Migration
     {
         Schema::create('hiking_routes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mountains_id');
-            $table->string('routes_name');
+            $table->unsignedBigInteger('mountain_id');
+            $table->string('name');
             $table->enum('status', ['Buka', 'Tutup'])->default('Buka');
             $table->enum('difficulty', ['Mudah', 'Normal', 'Sulit'])->default('Mudah');
+            $table->string('location');
             $table->decimal('distance')->nullable();
             $table->decimal('duration', 5, 2)->nullable();
             $table->integer('elevation_gain')->nullable();
-            $table->integer('number_of_pos');
-            $table->string('location');
+            $table->string('operating_hours', 100)->default('24 Jam');
+            $table->integer('numb_of_posts');
+            $table->string('contact', 100)->nullable()->default('text');
+            $table->integer('fee')->nullable();
             $table->string('img')->nullable();
             $table->string('file')->nullable();
-            $table->string('links')->nullable();
-            $table->text('description')->nullable();
+            $table->string('link')->nullable();
+            $table->text('rules')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('mountains_id')->references('id')->on('mountains');
+            $table->foreign('mountain_id')->references('id')->on('mountains');
         });
     }
 

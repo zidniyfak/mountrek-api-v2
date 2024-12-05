@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('mountains_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('mountain_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('mountains_id')->references('id')->on('mountains');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('mountain_id')->references('id')->on('mountains');
         });
     }
 

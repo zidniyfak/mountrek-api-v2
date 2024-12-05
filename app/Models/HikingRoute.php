@@ -10,24 +10,27 @@ class HikingRoute extends Model
     use HasFactory;
 
     protected $fillable = [
-        'mountains_id',
-        'route_name',
+        'mountain_id',
+        'name',
         'status',
         'difficulty',
+        'location',
         'distance',
         'duration',
         'elevation_gain',
-        'number_of_pos',
-        'location',
+        'operating_hours',
+        'number_of_posts',
+        'contact',
+        'fee',
         'img',
         'file',
-        'links',
-        'description',
+        'link',
+        'rules',
     ];
 
 
     public function mountain()
     {
-        return $this->belongsTo(Mountain::class, 'mountains_id', 'id');
+        return $this->belongsTo(Mountain::class);
     }
 }

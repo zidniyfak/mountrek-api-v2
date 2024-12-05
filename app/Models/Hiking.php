@@ -9,27 +9,26 @@ class Hiking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'users_id',
-        'mountains_id',
-        'hiking_routes_id',
+        'user_id',
+        'hiking_route_id',
         'start_date',
         'end_date',
-        'companions',
+        'numb_of_teams',
         'notes',
-        'hiking_status',
+        'status',
         'duration'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id', 'id');
+        return $this->belongsTo(User::class);
     }
     public function mountain()
     {
-        return $this->belongsTo(Mountain::class, 'mountains_id', 'id');
+        return $this->belongsTo(Mountain::class);
     }
     public function hikingroute()
     {
-        return $this->belongsTo(HikingRoute::class, 'hiking_routes_id', 'id');
+        return $this->belongsTo(HikingRoute::class);
     }
 }

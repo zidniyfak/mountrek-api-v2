@@ -10,15 +10,14 @@ class Mountain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'mountains_name',
-        'region',
+        'name',
+        'location',
         'altitude',
-        'mountains_status',
-        'mountains_type',
-        'latitude',
-        'longitude',
-        'description',
+        'status',
+        'type',
+        'lat',
+        'long',
+        'desc',
         'img',
     ];
 }

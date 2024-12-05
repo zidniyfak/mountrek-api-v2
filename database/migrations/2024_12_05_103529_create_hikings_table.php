@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('hikings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('mountains_id');
-            $table->unsignedBigInteger('hiking_routes_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('hiking_route_id');
             $table->date('start_date')->default(date('Y-m-d'));
             $table->date('end_date')->default(date('Y-m-d'));
-            $table->integer('companions')->default(1);
+            $table->integer('numb_of_teams')->default(1);
             $table->string('notes', 255)->nullable();
-            $table->enum('hikings_status', [
+            $table->enum('status', [
                 'Active',
                 'Scheduled',
                 'Completed',
@@ -30,9 +29,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('mountains_id')->references('id')->on('mountains');
-            $table->foreign('hiking_routes_id')->references('id')->on('hiking_routes');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('hiking_route_id')->references('id')->on('hiking_routes');
         });
     }
 

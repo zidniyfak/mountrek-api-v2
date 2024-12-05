@@ -10,16 +10,16 @@ class Wishlist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
-        'mountains_id',
+        'user_id',
+        'mountain_id',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function mountain()
     {
-        return $this->belongsTo(Mountain::class, 'mountains_id', 'id');
+        return $this->belongsTo(Mountain::class, 'mountain_id', 'id');
     }
 }
