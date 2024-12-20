@@ -19,4 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/mountains', [MountainController::class, 'index']);
+// Route::get('/mountains', [MountainController::class, 'index']);
+
+Route::prefix('mountains')->group(function () {
+    Route::get('/', [MountainController::class, 'index']);
+    Route::get('/{id}', [MountainController::class, 'show']);
+    Route::post('/', [MountainController::class, 'store']);
+    Route::put('/{id}', [MountainController::class, 'update']);
+    Route::delete('/{id}', [MountainController::class, 'destroy']);
+});
