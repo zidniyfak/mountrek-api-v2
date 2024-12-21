@@ -26,6 +26,12 @@ Route::get('/register', [AdminLoginController::class, 'register'])->name('regist
 Route::post('/register-proses', [AdminLoginController::class, 'register_process'])->name('register-proses');
 Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 
+Route::get('/forgot-password', [AdminLoginController::class, 'forgot_password'])->name('forgot-password');
+Route::post('/forgot-password-process', [AdminLoginController::class, 'forgot_password_process'])->name('forgot-password-process');
+
+Route::get('/validasi-forgot-password/{token}', [AdminLoginController::class, 'validasi_forgot_password'])->name('validasi-forgot-password');
+Route::post('/validasi-forgot-password-process', [AdminLoginController::class, 'validasi_forgot_password_process'])->name('validasi-forgot-password_process');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
     // Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard')->middleware(['can:view_dashboard']);
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
