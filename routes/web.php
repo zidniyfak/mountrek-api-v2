@@ -27,6 +27,7 @@ Route::post('/register-proses', [AdminLoginController::class, 'register_process'
 Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
+    // Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard')->middleware(['can:view_dashboard']);
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains.index');

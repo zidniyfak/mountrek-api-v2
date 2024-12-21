@@ -15,7 +15,5 @@ class AdminDashboardController extends Controller
         //     return view('dashboard');
         // }
         return view('dashboard');
-
-        return abort(403);
     }
 }
