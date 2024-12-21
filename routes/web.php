@@ -26,7 +26,7 @@ Route::get('/register', [AdminLoginController::class, 'register'])->name('regist
 Route::post('/register-proses', [AdminLoginController::class, 'register_process'])->name('register-proses');
 Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:access_admin'], 'as' => 'admin.'], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains.index');
