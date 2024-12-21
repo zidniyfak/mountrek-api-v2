@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-use function Ramsey\Uuid\v1;
-
 class AdminLoginController extends Controller
 {
     //
@@ -66,6 +64,8 @@ class AdminLoginController extends Controller
         return redirect()->route('login')->with('success', 'Berhasil Register');
     }
 
+
+    // Fitur Lupa Password
     public function forgot_password()
     {
         return view('auth.forgot-password');
@@ -135,6 +135,8 @@ class AdminLoginController extends Controller
         $token->delete();
         return redirect()->route('login')->with('success', 'Berhasil Reset Password');
     }
+
+    // End Fitur Lupa Password
 
     public function logout()
     {

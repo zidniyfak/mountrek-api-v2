@@ -34,10 +34,6 @@
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        {{-- @error('email')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror --}}
-
                     </div>
 
                     <div class="row">

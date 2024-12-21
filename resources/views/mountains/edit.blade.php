@@ -30,10 +30,12 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('logout') }}" class="nav-link">
+        <a href="{{ url('admin/hikingroutes') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-route"></i>
             <p>
-                Logout
+                Rute Pendakian
+
+                {{-- <span class="badge badge-info right">6</span> --}}
             </p>
         </a>
     </li>

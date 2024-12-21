@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\AdminHikingRouteController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminMountainController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' 
     Route::get('/mountains/edit/{id}', [AdminMountainController::class, 'edit'])->name('mountains.edit');
     Route::put('/mountains/{id}', [AdminMountainController::class, 'update'])->name('mountains.update');
     Route::delete('/mountains/{id}', [AdminMountainController::class, 'destroy'])->name('mountains.destroy');
+
+    Route::get('/hikingroutes', [AdminHikingRouteController::class, 'index'])->name('hikingroutes.index');
+    Route::get('/hikingroutes/create', [AdminHikingRouteController::class, 'create'])->name('hikingroutes.create');
+    Route::post('/hikingroutes/store', [AdminHikingRouteController::class, 'store'])->name('hikingroutes.store');
+    Route::get('/hikingroutes/edit/{id}', [AdminHikingRouteController::class, 'edit'])->name('hikingroutes.edit');
+    Route::put('/hikingroutes/{id}', [AdminHikingRouteController::class, 'update'])->name('hikingroutes.update');
+    Route::delete('/hikingroutes/{id}', [AdminHikingRouteController::class, 'destroy'])->name('hikingroutes.destroy');
 });
 
 // Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains');

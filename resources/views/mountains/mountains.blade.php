@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="input-group input-group-sm ml-auto" style="width: 300px;">
-                                    <input type="text" id="table_search" class="form-control float-right"
+                                    <input type="text" id="table-mountains-search" class="form-control float-right"
                                         placeholder="Search">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-default">

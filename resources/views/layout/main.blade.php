@@ -317,47 +317,45 @@
     <!-- Hiding columns mountain -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.toggle-column');
-            const searchInput = document.getElementById('table_search');
+            // Tabel Mountains
+            const checkboxesMountains = document.querySelectorAll('.toggle-column');
+            const searchInputMountains = document.getElementById('table-mountains-search');
 
-            // Initialize column visibility based on localStorage
-            checkboxes.forEach(checkbox => {
+            checkboxesMountains.forEach(checkbox => {
                 const column = checkbox.getAttribute('data-column');
                 const isVisible = localStorage.getItem(`column-${column}`) !== 'hidden';
                 checkbox.checked = isVisible;
-                toggleColumnVisibility(column, isVisible);
+                toggleColumnVisibility(column, isVisible, 'table-mountains');
             });
 
-            checkboxes.forEach(checkbox => {
+            checkboxesMountains.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     const column = this.getAttribute('data-column');
                     const isVisible = this.checked;
-                    toggleColumnVisibility(column, isVisible);
+                    toggleColumnVisibility(column, isVisible, 'table-mountains');
                     localStorage.setItem(`column-${column}`, isVisible ? 'visible' : 'hidden');
                 });
             });
 
-            function toggleColumnVisibility(columnIndex, show) {
-                const table = document.getElementById('table-mountains');
+            function toggleColumnVisibility(columnIndex, show, tableId) {
+                const table = document.getElementById(tableId);
                 const rows = table.getElementsByTagName('tr');
 
                 for (let row of rows) {
                     const cells = row.getElementsByTagName('td');
                     const headers = row.getElementsByTagName('th');
 
-                    if (cells.length > 0) {
+                    if (cells.length > columnIndex) {
                         cells[columnIndex].style.display = show ? '' : 'none';
                     }
-                    if (headers.length > 0) {
+                    if (headers.length > columnIndex) {
                         headers[columnIndex].style.display = show ? '' : 'none';
                     }
                 }
             }
-
-
             // Search mountains
-            searchInput.addEventListener('keyup', function() {
-                const filter = searchInput.value.toLowerCase();
+            searchInputMountains.addEventListener('keyup', function() {
+                const filter = searchInputMountains.value.toLowerCase();
                 const table = document.getElementById('table-mountains');
                 const rows = table.getElementsByTagName('tr');
                 const namaGunungIndex = 1; // Indeks kolom "Nama Gunung"
@@ -370,9 +368,49 @@
                     }
                 }
             });
+
+            // Tabel Hiking Routes
+            const checkboxesHikingRoutes = document.querySelectorAll('.toggle-column-hikingroutes');
+            const searchInputHikingRoutes = document.getElementById('table-search-hikingroutes');
+
+            checkboxesHikingRoutes.forEach(checkbox => {
+                const column = checkbox.getAttribute('hikingroutes-column');
+                const isVisible = localStorage.getItem(`hikingroutes-column-${column}`) !== 'hidden';
+                checkbox.checked = isVisible;
+                toggleColumnVisibilityHikingRoutes(column, isVisible);
+            });
+
+            checkboxesHikingRoutes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const column = this.getAttribute('hikingroutes-column');
+                    const isVisible = this.checked;
+                    toggleColumnVisibilityHikingRoutes(column, isVisible);
+                    localStorage.setItem(`hikingroutes-column-${column}`, isVisible ? 'visible' :
+                        'hidden');
+                });
+            });
+
+            function toggleColumnVisibilityHikingRoutes(columnIndex, show) {
+                const table = document.getElementById('table-hikingroutes');
+                const rows = table.getElementsByTagName('tr');
+
+                for (let row of rows) {
+                    const cells = row.getElementsByTagName('td');
+                    const headers = row.getElementsByTagName('th');
+
+                    if (cells.length > columnIndex) {
+                        cells[columnIndex].style.display = show ? '' : 'none';
+                    }
+                    if (headers.length > columnIndex) {
+                        headers[columnIndex].style.display = show ? '' : 'none';
+                    }
+                }
+            }
         });
     </script>
 
+
+    <!-- Sweet Alert -->
     <script>
         $(document).ready(function() {
             // Initialize bsCustomFileInput
@@ -403,11 +441,12 @@
 
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            bsCustomFileInput.init();
-        });
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js">
+        < /scrip> <
+        script >
+            $(document).ready(function() {
+                bsCustomFileInput.init();
+            });
     </script>
 
 </body>
