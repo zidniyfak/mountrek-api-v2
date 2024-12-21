@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminMountainController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,21 +17,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Menambahkan route untuk halaman utama
-Route::get('/', [AdminDashboardController::class, 'index']);
 
-// Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains');
-// Route::get('/mountains/create', [AdminMountainController::class, 'create'])->name('mountains.create');
-// Route::post('/mountains/store', [AdminMountainController::class, 'store'])->name('mountains.store');
-// Route::get('/mountains/edit/{id}', [AdminMountainController::class, 'edit'])->name('mountains.edit');
-// Route::put('/mountains/update/{id}', [AdminMountainController::class, 'update'])->name('mountains.update');
-// Route::delete('/mountains/destroy/{id}', [AdminMountainController::class, 'destroy'])->name('mountains.destroy');
-Route::prefix('mountains')->group(function () {
-    Route::get('/', [AdminMountainController::class, 'index'])->name('mountains.index');
-    Route::get('/create', [AdminMountainController::class, 'create'])->name('mountains.create');
-    Route::post('/store', [AdminMountainController::class, 'store'])->name('mountains.store');
-    Route::get('/edit/{id}', [AdminMountainController::class, 'edit'])->name('mountains.edit');
-    Route::put('/{id}', [AdminMountainController::class, 'update'])->name('mountains.update');
-    Route::delete('/{id}', [AdminMountainController::class, 'destroy'])->name('mountains.destroy');
+
+// Route Halaman Authentication
+Route::get('/login', [AdminLoginController::class, 'index'])->name('login');
+Route::post('/login-process', [AdminLoginController::class, 'login_process'])->name('login-process');
+Route::get('/register', [AdminLoginController::class, 'register'])->name('register');
+Route::post('/register-proses', [AdminLoginController::class, 'register_process'])->name('register-proses');
+Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains.index');
+    Route::get('/mountains/create', [AdminMountainController::class, 'create'])->name('mountains.create');
+    Route::post('/mountains/store', [AdminMountainController::class, 'store'])->name('mountains.store');
+    Route::get('/mountains/edit/{id}', [AdminMountainController::class, 'edit'])->name('mountains.edit');
+    Route::put('/mountains/{id}', [AdminMountainController::class, 'update'])->name('mountains.update');
+    Route::delete('/mountains/{id}', [AdminMountainController::class, 'destroy'])->name('mountains.destroy');
 });
 
-// Route::resource('/mountains', \App\Http\Controllers\admin\AdminMountainController::class);
+// Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains');

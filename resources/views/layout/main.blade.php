@@ -309,7 +309,8 @@
     <script src="{{ asset('lte/dist/js/pages/dashboard.js') }}"></script>
 
     <!-- SweetAlert2 -->
-    <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    {{-- <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- SCRIPT HERE... -->
 
@@ -382,7 +383,8 @@
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 3000,
+
             });
 
             @if (session('success'))
@@ -398,24 +400,6 @@
                     title: '{{ $errors->first() }}'
                 });
             @endif
-
-            // Handle Edit button click
-            $('body').on('click', '.btn-edit', function() {
-                var id = $(this).data('id');
-                $.get("{{ url('admin/mountains/edit') }}" + '/' + id, function(data) {
-                    $('#modal-edit').modal('show');
-                    $('#inputMountainsName').val(data.mountains_name);
-                    $('#inputRegion').val(data.region);
-                    $('#inputAltitude').val(data.altitude);
-                    $('select[name="status"]').val(data.mountains_status);
-                    $('select[name="type"]').val(data.mountains_type);
-                    $('#inputLatitude').val(data.latitude);
-                    $('#inputLongitude').val(data.longitude);
-                    $('textarea[name="description"]').val(data.description);
-                    $('form').attr('action', '{{ url('admin/mountains/update') }}/' + data.id);
-                });
-
-            });
 
         });
     </script>

@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('admin/mountains') }}" class="nav-link active">
+        <a href="{{ route('admin.mountains.index') }}" class="nav-link active">
             <i class="nav-icon fa-solid fa-mountain"></i>
             <p>
                 Gunung
@@ -26,6 +26,14 @@
                 Rute Pendakian
 
                 {{-- <span class="badge badge-info right">6</span> --}}
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('logout') }}" class="nav-link">
+            <i class="nav-icon fa-solid fa-route"></i>
+            <p>
+                Logout
             </p>
         </a>
     </li>
@@ -53,7 +61,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('mountains.update', ['id' => $mountain->id]) }}" method="POST"
+                <form action="{{ route('admin.mountains.update', ['id' => $mountain->id]) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

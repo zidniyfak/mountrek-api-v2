@@ -53,7 +53,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('mountains.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.mountains.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card card-primary">
                         <div class="card-header">

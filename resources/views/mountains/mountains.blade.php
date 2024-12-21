@@ -3,8 +3,8 @@
     <title>MountTrek | Mountains Data</title>
 @endsection
 @section('nav-menu')
-    <li class="nav-item menu-open">
-        <a href="/" class="nav-link">
+    <li class="nav-item">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
                 Dashboard
@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('admin/mountains') }}" class="nav-link active">
+        <a href="{{ route('admin.mountains.index') }}" class="nav-link active">
             <i class="nav-icon fa-solid fa-mountain"></i>
             <p>
                 Gunung
@@ -24,8 +24,14 @@
             <i class="nav-icon fa-solid fa-route"></i>
             <p>
                 Rute Pendakian
-
-                {{-- <span class="badge badge-info right">6</span> --}}
+            </p>
+        </a>
+    </li>
+    <li class="nav-item nav-danger">
+        <a href="{{ route('logout') }}" class="nav-link">
+            <i class="nav-icon fa-solid fa-door-open"></i>
+            <p>
+                Logout
             </p>
         </a>
     </li>
@@ -79,7 +85,7 @@
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="2" checked>
-                                            Provinsi
+                                            Lokasi
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="3" checked>
@@ -100,11 +106,11 @@
                                             Longitude
                                         </label>
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="8" checked> Img
+                                            <input type="checkbox" class="toggle-column" data-column="8" checked>
+                                            Deskripsi
                                         </label>
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="9" checked>
-                                            Deskripsi
+                                            <input type="checkbox" class="toggle-column" data-column="9" checked> Img
                                         </label>
                                     </div>
                                 </div>
@@ -127,15 +133,15 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>Name</th>
-                                            <th>Location</th>
-                                            <th>Altitude</th>
+                                            <th>Nama Gunung</th>
+                                            <th>Lokasi</th>
+                                            <th>Ketinggian</th>
                                             <th>Status </th>
-                                            <th>Type</th>
-                                            <th>Lat</th>
-                                            <th>Long</th>
-                                            <th>Image</th>
+                                            <th>Tipe</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
                                             <th>Desc</th>
+                                            <th>Image</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -150,6 +156,10 @@
                                                 <td>{{ $m->type }}</td>
                                                 <td>{{ $m->lat }}</td>
                                                 <td>{{ $m->long }}</td>
+                                                <td class="text-start"
+                                                    style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">
+                                                    {{ $m->desc }}
+                                                </td>
                                                 <td style="width: 100px; ">
                                                     @if ($m->img)
                                                         <img src="{{ $m->img }}" alt="{{ $m->name }}"
@@ -157,13 +167,9 @@
                                                     @endif
                                                 </td>
 
-                                                <td class="text-start"
-                                                    style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">
-                                                    {{ $m->desc }}
 
-                                                </td>
                                                 <td style="width: 100px;">
-                                                    <a href="{{ route('mountains.edit', ['id' => $m->id]) }}"
+                                                    <a href="{{ route('admin.mountains.edit', ['id' => $m->id]) }}"
                                                         class="btn btn-warning btn-edit">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
@@ -193,7 +199,7 @@
 
                                                             <button type="button" class="btn btn-default"
                                                                 data-dismiss="modal">Close</button>
-                                                            <form action="{{ route('mountains.destroy', $m->id) }}"
+                                                            <form action="{{ route('admin.mountains.destroy', $m->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -213,7 +219,8 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a href="{{ route('mountains.create') }}" class="btn btn-primary float-right">Tambah
+                                <a href="{{ route('admin.mountains.create') }}"
+                                    class="btn btn-primary float-right">Tambah
                                     Data
                                     Gunung</a>
                             </div>

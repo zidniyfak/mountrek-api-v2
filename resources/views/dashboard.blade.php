@@ -4,7 +4,7 @@
 @endsection
 @section('nav-menu')
     <li class="nav-item menu-open">
-        <a href="/" class="nav-link">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link active danger">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
                 Dashboard
@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/mountains') }}" class="nav-link active">
+        <a href="{{ route('admin.mountains.index') }}" class="nav-link">
             <i class="nav-icon fa-solid fa-mountain"></i>
             <p>
                 Gunung
@@ -24,8 +24,14 @@
             <i class="nav-icon fa-solid fa-route"></i>
             <p>
                 Rute Pendakian
-
-                {{-- <span class="badge badge-info right">6</span> --}}
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('logout') }}" class="nav-link nav-danger">
+            <i class="nav-icon fa-solid fa-route"></i>
+            <p>
+                Logout
             </p>
         </a>
     </li>

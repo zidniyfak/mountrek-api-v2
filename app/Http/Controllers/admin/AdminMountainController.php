@@ -38,7 +38,14 @@ class AdminMountainController extends Controller
                 'img' => 'nullable',
             ],
             [
+                'name.required' => 'nama harus diisi',
+                'location.required' => 'lokasi harus diisi',
+                'altitude.required' => 'ketinggian harus diisi',
+                'status.required' => 'status harus diisi',
+                'type.required' => 'tipe harus diisi',
                 'long.required' => 'longitude harus diisi',
+                'lat.required' => 'latitude harus diisi',
+                'img.required' => 'gambar harus diisi',
             ]
         );
 
@@ -62,7 +69,7 @@ class AdminMountainController extends Controller
             'img' => $img->hashName(),
         ]);
 
-        return redirect()->route('mountains.index')->with('success', 'Mountain Created Successfully');
+        return redirect()->route('admin.mountains.index')->with('success', 'Mountain Created Successfully');
     }
 
     public function edit(Request $request, $id)
@@ -87,7 +94,14 @@ class AdminMountainController extends Controller
                 'img' => 'nullable',
             ],
             [
+                'name.required' => 'nama harus diisi',
+                'location.required' => 'lokasi harus diisi',
+                'altitude.required' => 'ketinggian harus diisi',
+                'status.required' => 'status harus diisi',
+                'type.required' => 'tipe harus diisi',
                 'long.required' => 'longitude harus diisi',
+                'lat.required' => 'latitude harus diisi',
+                'img.required' => 'gambar harus diisi',
             ]
         );
 
@@ -96,7 +110,6 @@ class AdminMountainController extends Controller
         }
 
         $mountain = Mountain::findOrFail($id);
-
         if ($request->hasFile('img')) {
             $img = $request->file('img');
             $img->storeAs('public/mountains', $img->hashName());
@@ -127,9 +140,8 @@ class AdminMountainController extends Controller
             ]);
         }
 
-        return redirect()->route('mountains.index')->with('success', 'Mountain Updated Successfully');
+        return redirect()->route('admin.mountains.index')->with('success', 'Mountain Updated Successfully');
     }
-
 
     public function destroy($id)
     {
@@ -142,6 +154,6 @@ class AdminMountainController extends Controller
 
         $mountain->delete();
 
-        return redirect()->route('mountains.index')->with('success', 'Mountain Deleted Successfully');
+        return redirect()->route('admin.mountains.index')->with('success', 'Mountain Deleted Successfully');
     }
 }
