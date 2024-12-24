@@ -1,56 +1,20 @@
-@extends('layout.main')
-@section('title')
-    <title>MountTrek | Mountains Data</title>
-@endsection
-@section('nav-menu')
-    <li class="nav-item">
-        <a href="{{ route('admin.dashboard') }}" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('admin.mountains.index') }}" class="nav-link ">
-            <i class="nav-icon fa-solid fa-mountain"></i>
-            <p>
-                Gunung
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('admin.hikingroutes.index') }}" class="nav-link active">
-            <i class="nav-icon fa-solid fa-route"></i>
-            <p>
-                Rute Pendakian
-            </p>
-        </a>
-    </li>
-    <li class="nav-item nav-danger">
-        <a href="{{ route('logout') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-door-open"></i>
-            <p>
-                Logout
-            </p>
-        </a>
-    </li>
-@endsection
-@section('content')
+@extends('hikingroutes.hiking_route_layout')
+@section('hiking-route-content')
     <!-- Content Wrapper. Contains page content -->
+    @yield('hikingroutes-content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Rute Pendakian</h1>
+                        <h1 class="m-0">Data Rute Pendakian</h1>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
-                                <a href="#">Home</a>
+                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active">
                                 Rute Pendakian
@@ -110,7 +74,7 @@
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
                                                 hikingroutes-column="7" checked>
-                                            Elevation Gain
+                                            Elevasi
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
@@ -123,11 +87,11 @@
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="10" checked> Contact
+                                                hikingroutes-column="10" checked> Kontak
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="11" checked> Fee
+                                                hikingroutes-column="11" checked> Biaya
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
@@ -143,13 +107,13 @@
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="15" checked> Rules
+                                                hikingroutes-column="15" checked> Aturan
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="input-group input-group-sm ml-auto" style="width: 300px;">
-                                    <input type="text" id="table-search-hikingroutes" class="form-control float-right"
+                                    <input type="text" id="table-search-hiking-routes" class="form-control float-right"
                                         placeholder="Search">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-default">
@@ -161,18 +125,19 @@
 
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0" style="height: 500px;">
-                                <table id="table-hikingroutes"
+                                <table id="table-hiking-routes"
                                     class="table table-striped table-hover table-head-fixed text-nowrap">
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama Rute</th>
+                                            <th>Nama Gunung</th>
                                             <th>Status</th>
                                             <th>Kesulitan</th>
                                             <th>Lokasi </th>
                                             <th>Jarak</th>
                                             <th>Durasi</th>
-                                            <th>Elevation Gain</th>
+                                            <th>Elevasi</th>
                                             <th>Jam Operasi</th>
                                             <th>Jumlah Pos</th>
                                             <th>Kontak</th>
@@ -180,7 +145,7 @@
                                             <th>Img</th>
                                             <th>File</th>
                                             <th>Link</th>
-                                            <th>Rules</th>
+                                            <th>Aturan</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -189,6 +154,7 @@
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $hr->name }}</td>
+                                                <td>{{ $hr->mountain->name }}</td>
                                                 <td>{{ $hr->status }}</td>
                                                 <td>{{ $hr->difficulty }}</td>
                                                 <td>{{ $hr->location }}</td>
@@ -205,7 +171,6 @@
                                                             style="width: 100px;">
                                                     @endif
                                                 </td>
-                                                {{-- <td>{{ $hr->img }}</td> --}}
                                                 <td>{{ $hr->file }}</td>
                                                 <td>{{ $hr->link }}</td>
                                                 <td>{{ $hr->rules }}</td>
@@ -236,8 +201,6 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-
-
                                                             <button type="button" class="btn btn-default"
                                                                 data-dismiss="modal">Close</button>
                                                             <form
@@ -263,12 +226,10 @@
                             <div class="card-footer clearfix">
                                 <a href="{{ route('admin.hikingroutes.create') }}"
                                     class="btn btn-primary float-right">Tambah
-                                    Data
-                                    Rute</a>
+                                    Rute Pendakian</a>
                             </div>
                         </div>
                         <!-- /.card -->
-
                     </div>
                 </div>
                 <!-- /.row (main row) -->

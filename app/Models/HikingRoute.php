@@ -35,6 +35,11 @@ class HikingRoute extends Model
         return $this->belongsTo(Mountain::class);
     }
 
+    public function hiking()
+    {
+        return $this->hasMany(Hiking::class, 'hiking_route_id', 'id');
+    }
+
     protected function img(): Attribute
     {
         return Attribute::make(

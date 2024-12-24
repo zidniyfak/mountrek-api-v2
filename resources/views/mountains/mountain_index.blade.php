@@ -1,42 +1,5 @@
-@extends('layout.main')
-@section('title')
-    <title>MountTrek | Mountains Data</title>
-@endsection
-@section('nav-menu')
-    <li class="nav-item">
-        <a href="{{ route('admin.dashboard') }}" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('admin.mountains.index') }}" class="nav-link active">
-            <i class="nav-icon fa-solid fa-mountain"></i>
-            <p>
-                Gunung
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('admin/hikingroutes') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-route"></i>
-            <p>
-                Rute Pendakian
-            </p>
-        </a>
-    </li>
-    <li class="nav-item nav-danger">
-        <a href="{{ route('logout') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-door-open"></i>
-            <p>
-                Logout
-            </p>
-        </a>
-    </li>
-@endsection
-@section('content')
+@extends('mountains.mountain_layout')
+@section('mountain-content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -44,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Mountains</h1>
+                        <h1 class="m-0">Data Gunung</h1>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
@@ -53,7 +16,7 @@
                                 <a href="#">Home</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Gunung
+                                Data Gunung
                             </li>
                         </ol>
                     </div>
@@ -134,14 +97,15 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama Gunung</th>
+                                            <th>Rute</th>
                                             <th>Lokasi</th>
                                             <th>Ketinggian</th>
                                             <th>Status </th>
                                             <th>Tipe</th>
                                             <th>Latitude</th>
                                             <th>Longitude</th>
-                                            <th>Desc</th>
-                                            <th>Image</th>
+                                            <th>Deskripsi</th>
+                                            <th>Gambar</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -150,6 +114,11 @@
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="text-left">{{ $m->name }}</td>
+                                                <td class="text-left">
+                                                    @foreach ($m->hiking_route as $hr)
+                                                        - {{ $hr->name }}<br>
+                                                    @endforeach
+                                                </td>
                                                 <td class="text-left">{{ $m->location }}</td>
                                                 <td>{{ $m->altitude }}</td>
                                                 <td>{{ $m->status }}</td>
@@ -166,8 +135,6 @@
                                                             style="width: 100px;">
                                                     @endif
                                                 </td>
-
-
                                                 <td style="width: 100px;">
                                                     <a href="{{ route('admin.mountains.edit', ['id' => $m->id]) }}"
                                                         class="btn btn-warning btn-edit">

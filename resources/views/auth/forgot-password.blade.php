@@ -22,11 +22,11 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('login') }}" class="h1"><b>Admin</b>LTE</a>
+                <a href="{{ route('forgot-password') }}" class="h1"><b>Lupa Password</b></a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Forgot password</p>
-
+                <p class="login-box-msg">Masukkan email yang terdaftar dan kami akan mengirimkan link untuk reset
+                    password ke email anda.</p>
                 <form action="{{ route('forgot-password-process') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
@@ -39,20 +39,15 @@
                         {{-- @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror --}}
-
                     </div>
-
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Kirim</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-                </p>
             </div>
             <!-- /.card-body -->
         </div>

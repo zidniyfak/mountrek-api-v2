@@ -10,6 +10,8 @@ class Mountain extends Model
 {
     use HasFactory;
 
+    protected $table = 'mountains';
+
     protected $fillable = [
         'name',
         'location',
@@ -28,5 +30,10 @@ class Mountain extends Model
         return Attribute::make(
             get: fn($img) => asset('/storage/mountains/' . $img),
         );
+    }
+
+    public function hiking_route()
+    {
+        return $this->hasMany(HikingRoute::class, 'mountain_id', 'id');
     }
 }

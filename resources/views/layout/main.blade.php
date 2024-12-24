@@ -11,12 +11,12 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}" /> --}}
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
-        href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}" />
+        href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" />
     <!-- JQVMap -->
@@ -30,12 +30,19 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}" />
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('lte/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- SweetAlert 2 -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/85fbe4cfb2.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -53,6 +60,9 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index3.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index3.html" class="nav-link">Bantuan</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -121,7 +131,8 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-muted"><i
+                                                class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">
                                         I got your message bro
@@ -227,19 +238,6 @@
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                {{-- <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search" />
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -311,6 +309,8 @@
     <!-- SweetAlert2 -->
     {{-- <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('lte/plugins/select2/js/select2.full.min.js') }}"></script>
 
     <!-- SCRIPT HERE... -->
 
@@ -431,23 +431,49 @@
                     title: '{{ session('success') }}'
                 });
             @endif
-
-            @if ($errors->any())
+            @if (session('error'))
                 Toast.fire({
                     icon: 'error',
-                    title: '{{ $errors->first() }}'
+                    title: '{{ session('error') }}'
                 });
             @endif
+
+            // @if ($errors->any())
+            //     Toast.fire({
+            //         icon: 'error',
+            //         title: '{{ $errors->first() }}'
+            //     });
+            // @endif
 
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js">
-        < /scrip> <
-        script >
-            $(document).ready(function() {
-                bsCustomFileInput.init();
-            });
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
     </script>
+
+    <!-- Mountains -->
+
+    <!-- Hiking Routes -->
+
+    <!-- Form Edit Data Pendakian -->
+    <script type="text/javascript">
+        $(function() {
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            })
+            $('#tanggalnaik').datetimepicker({
+                format: 'L'
+            });
+            $('#tanggalturun').datetimepicker({
+                format: 'L'
+            });
+        });
+    </script>
+
+    <!-- Wishlist -->
+    <!-- Users -->
 
 </body>
 

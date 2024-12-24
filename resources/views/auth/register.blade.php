@@ -22,11 +22,10 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('login') }}" class="h1"><b>Admin</b>LTE</a>
+                <a href="{{ route('register') }}" class="h1"><b>Sign up</b></a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Register</p>
-
+                {{-- <p class="login-box-msg">Register</p> --}}
                 <form action="{{ route('register-proses') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
@@ -65,27 +64,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        {{-- <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div> --}}
-                        <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="{{ route('login') }}" class="text-center">Sudah punya akun? Login</a>
                 </p>
             </div>
             <!-- /.card-body -->

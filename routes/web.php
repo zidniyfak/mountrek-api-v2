@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\AdminHikingController;
 use App\Http\Controllers\admin\AdminHikingRouteController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminMountainController;
+use App\Http\Controllers\admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route Halaman Authentication
-Route::get('/login', [AdminLoginController::class, 'index'])->name('login');
+Route::get('/', [AdminLoginController::class, 'index'])->name('login');
 Route::post('/login-process', [AdminLoginController::class, 'login_process'])->name('login-process');
 Route::get('/register', [AdminLoginController::class, 'register'])->name('register');
 Route::post('/register-proses', [AdminLoginController::class, 'register_process'])->name('register-proses');
@@ -35,7 +37,7 @@ Route::post('/validasi-forgot-password-process', [AdminLoginController::class, '
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
     // Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard')->middleware(['can:view_dashboard']);
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains.index');
     Route::get('/mountains/create', [AdminMountainController::class, 'create'])->name('mountains.create');
@@ -50,6 +52,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' 
     Route::get('/hikingroutes/edit/{id}', [AdminHikingRouteController::class, 'edit'])->name('hikingroutes.edit');
     Route::put('/hikingroutes/{id}', [AdminHikingRouteController::class, 'update'])->name('hikingroutes.update');
     Route::delete('/hikingroutes/{id}', [AdminHikingRouteController::class, 'destroy'])->name('hikingroutes.destroy');
+
+    Route::get('/hikings', [AdminHikingController::class, 'index'])->name('hikings.index');
+    Route::get('/hikings/create', [AdminHikingController::class, 'create'])->name('hikings.create');
+    Route::post('/hikings/store', [AdminHikingController::class, 'store'])->name('hikings.store');
+    Route::get('/hikings/edit/{id}', [AdminHikingController::class, 'edit'])->name('hikings.edit');
+    Route::put('/hikings/{id}', [AdminHikingController::class, 'update'])->name('hikings.update');
+    Route::delete('/hikings/{id}', [AdminHikingController::class, 'destroy'])->name('hikings.destroy');
+
+    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [AdminUserController::class, 'store'])->name('users.store');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [AdminUserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
 });
 
 // Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains');

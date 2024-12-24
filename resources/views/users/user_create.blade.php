@@ -1,36 +1,6 @@
-@extends('layout.main')
-@section('title')
-    <title>MountTrek | Mountains Data</title>
-@endsection
-@section('nav-menu')
-    <li class="nav-item menu-open">
-        <a href="/" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('admin/mountains') }}" class="nav-link active">
-            <i class="nav-icon fa-solid fa-mountain"></i>
-            <p>
-                Gunung
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('admin/hikingroutes') }}" class="nav-link">
-            <i class="nav-icon fa-solid fa-route"></i>
-            <p>
-                Rute Pendakian
+@extends('users.user_layout')
 
-                {{-- <span class="badge badge-info right">6</span> --}}
-            </p>
-        </a>
-    </li>
-@endsection
-@section('content')
+@section('user-content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -127,8 +97,8 @@
                                             </div>
                                             <div class="col form-group">
                                                 <label for="inputContact">Kontak</label>
-                                                <input type="text" step="any" class="form-control"
-                                                    id="inputContact" name="contact" placeholder="Latitude" required>
+                                                <input type="text" step="any" class="form-control" id="inputContact"
+                                                    name="contact" placeholder="Latitude" required>
                                             </div>
                                             <div class="col form-group">
                                                 <label for="inputFee">Biaya</label>

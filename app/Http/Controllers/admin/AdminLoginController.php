@@ -56,7 +56,6 @@ class AdminLoginController extends Controller
         $data['email'] = $request->email;
         $data['phone_numb'] = $request->phone_numb;
         $data['password'] = Hash::make($request->password);
-        $data['role'] = 'admin';
         $data['img'] = 'admin.jpg';
 
         User::create($data);

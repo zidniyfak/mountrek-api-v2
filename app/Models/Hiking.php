@@ -23,11 +23,7 @@ class Hiking extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function mountain()
-    {
-        return $this->belongsTo(Mountain::class);
-    }
-    public function hikingroute()
+    public function hiking_route()
     {
         return $this->belongsTo(HikingRoute::class);
     }

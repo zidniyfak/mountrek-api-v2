@@ -22,5 +22,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'img' => 'admin.png',
         ]);
+
+        User::create([
+            'name' => 'cust',
+            'email' => 'cust@gmail.com',
+            'phone_numb' => '08123456789',
+            'password' => Hash::make('admin123'),
+            'img' => 'admin.png',
+        ]);
     }
 }
