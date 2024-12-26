@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\api\HikingController;
+use App\Http\Controllers\api\HikingRouteController;
 use App\Http\Controllers\api\MountainController;
+use App\Http\Controllers\api\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/mountains', [MountainController::class, 'index']);
+
 
 Route::prefix('mountains')->group(function () {
     Route::get('/', [MountainController::class, 'index']);
-    Route::get('/{id}', [MountainController::class, 'show']);
-    Route::post('/', [MountainController::class, 'store']);
-    Route::put('/{id}', [MountainController::class, 'update']);
-    Route::delete('/{id}', [MountainController::class, 'destroy']);
+    Route::get('/search', [MountainController::class, 'search']);
 });
+Route::apiResource('hikingroutes', HikingRouteController::class)->except(['store', 'update', 'destroy']);
+Route::apiResource('hikings', HikingController::class);
+Route::apiResource('wishlists', WishlistController::class)->except(['show', 'update']);
