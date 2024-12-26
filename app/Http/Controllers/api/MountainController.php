@@ -26,6 +26,26 @@ class MountainController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $mountain = Mountain::with('hiking_route')->find($id);
+            if (!$mountain) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Mountain not found',
+                ], 404);
+            }
+            return new MountainResource($mountain);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error retrieving mountain',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function search(Request $request)
     {
         try {

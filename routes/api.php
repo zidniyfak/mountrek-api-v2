@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('mountains')->group(function () {
     Route::get('/', [MountainController::class, 'index']);
+    Route::get('/{id}', [MountainController::class, 'show']);
     Route::get('/search', [MountainController::class, 'search']);
 });
 Route::apiResource('hikingroutes', HikingRouteController::class)->except(['store', 'update', 'destroy']);
