@@ -22,6 +22,10 @@ class HikingResource extends JsonResource
                 'id' => $this->hiking_route->id,
                 'name' => $this->hiking_route->name,
                 'img' => $this->hiking_route->img,
+                'location' => $this->hiking_route->location,
+                'lat' => $this->hiking_route->lat,
+                'lng' => $this->hiking_route->lng,
+                'file' => $this->hiking_route->file,
             ],
             'mountain' => [
                 'id' => $this->hiking_route->mountain->id,

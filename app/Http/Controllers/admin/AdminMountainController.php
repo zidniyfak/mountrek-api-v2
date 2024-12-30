@@ -59,21 +59,33 @@ class AdminMountainController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Menangani gambar jika ada
-        $img = $request->file('img');
-        $img->storeAs('public/mountains', $img->hashName());
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $img->storeAs('public/mountains', $img->hashName());
 
-        Mountain::create([
-            'name' => $request->name,
-            'location' => $request->location,
-            'altitude' => $request->altitude,
-            'status' => $request->status,
-            'type' => $request->type,
-            'lat' => $request->lat,
-            'lng' => $request->lng,
-            'desc' => $request->desc,
-            'img' => $img->hashName(),
-        ]);
+            Mountain::create([
+                'name' => $request->name,
+                'location' => $request->location,
+                'altitude' => $request->altitude,
+                'status' => $request->status,
+                'type' => $request->type,
+                'lat' => $request->lat,
+                'lng' => $request->lng,
+                'desc' => $request->desc,
+                'img' => $img->hashName(),
+            ]);
+        } else {
+            Mountain::create([
+                'name' => $request->name,
+                'location' => $request->location,
+                'altitude' => $request->altitude,
+                'status' => $request->status,
+                'type' => $request->type,
+                'lat' => $request->lat,
+                'lng' => $request->lng,
+                'desc' => $request->desc,
+            ]);
+        }
 
         return redirect()->route('admin.mountains.index')->with('success', 'Data berhasil ditambahkan');
     }

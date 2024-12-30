@@ -65,6 +65,7 @@
                                                     <option value="Maar">Maar</option>
                                                     <option value="Strato">Strato</option>
                                                     <option value="Perisai">Perisai</option>
+                                                    <option value="Lainnya">Lainnya</option>
                                                 </select>
                                             </div>
                                         </div>

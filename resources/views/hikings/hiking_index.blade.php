@@ -63,7 +63,6 @@
                                             <th>Tanggal Naik</th>
                                             <th>Tanggal Turun</th>
                                             <th>Jumlah Tim</th>
-                                            <th>Durasi</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -78,7 +77,6 @@
                                                 <td>{{ \Carbon\Carbon::parse($h->start_date)->format('d-m-Y') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($h->end_date)->format('d-m-Y') }}</td>
                                                 <td>{{ $h->numb_of_teams }}</td>
-                                                <td>{{ $h->duration }}</td>
                                                 <td>{{ $h->status }}</td>
                                                 <td style="width: 100px;">
                                                     <a href="{{ route('admin.hikings.edit', ['id' => $h->id]) }}"

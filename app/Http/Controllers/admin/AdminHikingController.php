@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hiking;
+use App\Models\HikingRoute;
 use App\Models\Mountain;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +27,9 @@ class AdminHikingController extends Controller
             return $query->where('status', 'like', "%{$search}%")
                 ->orWhere('start_date', 'like', "%{$search}%")
                 ->orWhere('end_date', 'like', "%{$search}%")
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
                 ->orWhereHas('hiking_route', function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
                         ->orWhereHas('mountain', function ($query) use ($search) {
@@ -57,7 +61,7 @@ class AdminHikingController extends Controller
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
                 'numb_of_teams' => 'required|integer',
-                'notes' => 'nullable|string',
+                'desc' => 'nullable',
             ]
         );
 
@@ -70,7 +74,7 @@ class AdminHikingController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'numb_of_teams' => $request->numb_of_teams,
-            'notes' => $request->notes,
+            'desc' => $request->desc,
         ]);
 
         return redirect()->route('admin.hikings.index')->with('success', 'Data berhasil ditambahkan');
@@ -78,9 +82,13 @@ class AdminHikingController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $mountains = Mountain::all();
         $hiking = Hiking::findOrFail($id);
-        return view('hikings.hiking_edit', compact('hiking', 'mountains'));
+        $mountains = Mountain::all();
+        $hikingRoutes = HikingRoute::where('mountain_id', $hiking->hiking_route->mountain_id)->get();
+        $users = User::all(); // Pastikan data user tersedia jika ingin validasi
+        $statuses = ['scheduled', 'active', 'finished', 'cancelled'];
+
+        return view('hikings.hiking_edit', compact('hiking', 'mountains', 'hikingRoutes', 'users', 'statuses'));
     }
 
     public function update(Request $request, $id)
@@ -94,27 +102,26 @@ class AdminHikingController extends Controller
                 'end_date' => 'required|date',
                 'numb_of_teams' => 'required|integer',
                 'notes' => 'nullable|string',
-                'status' => 'required',
-                'duration' => 'required|integer',
-            ],
+                'status' => 'required|in:scheduled,active,finished,cancelled',
+            ]
         );
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-
         $hiking = Hiking::findOrFail($id);
+
         $hiking->update([
-            'user_id' => $request->user_id,
+            'user_id' => $request->user_id, // Tidak diubah karena readonly
             'hiking_route_id' => $request->hiking_route_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'numb_of_teams' => $request->numb_of_teams,
             'notes' => $request->notes,
             'status' => $request->status,
-            'duration' => $request->duration,
         ]);
+
         return redirect()->route('admin.hikings.index')->with('success', 'Data berhasil diupdate');
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Stringable;
 
@@ -87,6 +88,22 @@ class AuthController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
+
+        // Jika ada file gambar, simpan ke storage
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $imgName = $img->hashName();
+            $img->storeAs('public/users', $imgName);
+
+            // Hapus gambar lama jika ada
+            if ($user->img && Storage::exists('public/users/' . $user->img)) {
+                Storage::delete('public/users/' . $user->img);
+            }
+
+            // Simpan nama file baru ke database
+            $user->img = $imgName;
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone_numb = $request->phone_numb;

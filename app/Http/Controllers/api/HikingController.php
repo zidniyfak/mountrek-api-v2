@@ -22,7 +22,7 @@ class HikingController extends Controller
             $hikings = Hiking::with('user', 'hiking_route.mountain')
                 ->whereIn('status', ['Finished', 'Cancelled'])
                 ->where('user_id', $user->id)
-                ->orderBy('start_date', 'asc')
+                ->orderBy('start_date', 'desc')
                 ->get();
             return new HikingCollection($hikings);
             // return HikingResource::collection($hikings);
@@ -83,7 +83,6 @@ class HikingController extends Controller
                     'start_date' => 'required|date',
                     'end_date' => 'required|date',
                     'numb_of_teams' => 'required|integer',
-                    'notes' => 'nullable|string',
                 ]
             );
             if ($validator->fails()) {
@@ -100,7 +99,7 @@ class HikingController extends Controller
                 'end_date' => $request->end_date,
                 'status' => $request->start_date == $dateNow ? 'Active' : 'Scheduled',
                 'numb_of_teams' => $request->numb_of_teams,
-                'desc' => $request->notes,
+                'desc' => $request->desc,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

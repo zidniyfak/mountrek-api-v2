@@ -28,106 +28,101 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Update Data Rute Pendakian</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        {{-- @foreach ($mountains as $m)
-                                                    <option value="{{ $m->id }}">
-                                                        {{ $m->name }}
-                                                    </option>
-                                                @endforeach --}}
-                        <!-- form start -->
-                        <form>
+                    <div class="col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Form Update Data Pendakian</h3>
+                            </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="inputName">Nama Pendaki</label>
-                                            <input type="text" class="form-control" id="inputName"
-                                                name="mountain_id"value="{{ $hiking->user->name }} " disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nama Gunung</label>
-                                            <select class="form-control select2" name="gunung" style="width: 100%;">
-                                                <option value="">Gunung Merbabu</option>
-                                                <option value="">Gunung Andong</option>
-                                                <option value="">Gunung Sumbing</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nama Gunung</label>
-                                            <select class="form-control select2" name="difficulty" style="width: 100%;">
-                                                <option value="">Gunung Merbabu</option>
-                                                <option value="">Gunung Andong</option>
-                                                <option value="">Gunung Sumbing</option>
-                                            </select>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col form-group">
-                                                <label>Tanggal Naik</label>
-                                                <div class="input-group date" id="tanggalnaik" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#tanggalnaik" />
-                                                    <div class="input-group-append" data-target="#tanggalnaik"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col form-group">
-                                                <label>Tanggal Turun</label>
-                                                <div class="input-group date" id="tanggalturun" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input"
-                                                        data-target="#tanggalturun" />
-                                                    <div class="input-group-append" data-target="#tanggalturun"
-                                                        data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
+                                <div class="form-group">
+                                    <label for="user_id">Nama Pendaki</label>
+                                    <select class="form-control select2" id="user_id" name="user_id" required readonly>
+                                        <option value="{{ $hiking->user_id }}" selected>{{ $hiking->user->name }}</option>
+                                    </select>
+                                </div>
 
-                                            <div class="col form-group">
-                                                <label for="inputDuration">Durasi</label>
-                                                <input type="number" class="form-control" id="inputDuration"
-                                                    name="duration" placeholder="Durasi Pendakian" value="" required>
+                                <div class="form-group">
+                                    <label for="mountain_id">Gunung</label>
+                                    <select class="form-control select2" id="mountain_id" name="mountain_id" required>
+                                        <option value="" disabled>Pilih Gunung</option>
+                                        @foreach ($mountains as $mountain)
+                                            <option value="{{ $mountain->id }}"
+                                                {{ $hiking->hiking_route->mountain_id == $mountain->id ? 'selected' : '' }}>
+                                                {{ $mountain->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="hiking_route_id">Rute Pendakian</label>
+                                    <select class="form-control select2" id="hiking_route_id" name="hiking_route_id"
+                                        required>
+                                        <option value="{{ $hiking->hiking_route_id }}" selected>
+                                            {{ $hiking->hiking_route->name }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label>Tanggal Naik</label>
+                                        <div class="input-group date" id="tanggalnaik" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                data-target="#tanggalnaik" name="start_date"
+                                                value="{{ $hiking->start_date }}" />
+                                            <div class="input-group-append" data-target="#tanggalnaik"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                            <div class="col form-group">
-                                                <label for="inputDistance">Jumlah Anggota</label>
-                                                <input type="number" class="form-control" id="inputDistance"
-                                                    name="distance" placeholder="Jarak Pendakian" required value="">
-                                            </div>
-                                        </div>
-                                        <div class="col form-group">
-                                            <label>Status</label>
-                                            <select class="form-control" name="difficulty" required>
-                                                <option value="Buka">Active</option>
-                                                <option value="Normal">Scheduled</option>
-                                                <option value="Sulit">Sulit</option>
-                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Catatan</label>
-                                            <textarea class="form-control" rows="15" name="rules" placeholder="Masukkan deskripsi gunung ..." required></textarea>
+                                    <div class="col form-group">
+                                        <label>Tanggal Turun</label>
+                                        <div class="input-group date" id="tanggalturun" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                data-target="#tanggalturun" name="end_date"
+                                                value="{{ $hiking->end_date }}" />
+                                            <div class="input-group-append" data-target="#tanggalturun"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="numb_of_teams">Jumlah Tim</label>
+                                    <input type="number" class="form-control" id="numb_of_teams" name="numb_of_teams"
+                                        value="{{ $hiking->numb_of_teams }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="notes">Deskripsi</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="3">{{ $hiking->notes }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="status">Status Pendakian</label>
+                                    <select class="form-control" id="status" name="status" required>
+                                        <option value="scheduled" {{ $hiking->status == 'scheduled' ? 'selected' : '' }}>
+                                            Scheduled</option>
+                                        <option value="active" {{ $hiking->status == 'active' ? 'selected' : '' }}>Active
+                                        </option>
+                                        <option value="finished" {{ $hiking->status == 'finished' ? 'selected' : '' }}>
+                                            Finished</option>
+                                        <option value="cancelled" {{ $hiking->status == 'cancelled' ? 'selected' : '' }}>
+                                            Cancelled</option>
+                                    </select>
+                                </div>
                             </div>
-                            <!-- /.card-body -->
-                        </form>
-                        <!-- /.form-end -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary float-right">Update</button>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <!-- /.card -->
         </section>
         <!-- /.content -->
     </div>

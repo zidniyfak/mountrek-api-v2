@@ -50,7 +50,7 @@
                                             <div class="col form-group">
                                                 <label for="inputName">Nama Rute</label>
                                                 <input type="text" class="form-control" id="inputName" name="name"
-                                                    placeholder="Masukkan nama gunung" required>
+                                                    placeholder="Masukkan nama rute" required>
                                             </div>
                                         </div>
                                         <div class="row">

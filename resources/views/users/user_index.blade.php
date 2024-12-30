@@ -60,7 +60,7 @@
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>No. Telepon</th>
-                                            <th>Foto</th>
+                                            {{-- <th>Foto</th> --}}
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -71,12 +71,12 @@
                                                 <td>{{ $u->name }}</td>
                                                 <td>{{ $u->email }}</td>
                                                 <td>{{ $u->phone_numb }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     @if ($u->img)
                                                         <img src="{{ $u->img }}" alt="{{ $u->name }}"
                                                             style="width: 100px;">
                                                     @endif
-                                                </td>
+                                                </td> --}}
 
                                                 <td style="width: 100px;">
                                                     <a href="{{ route('admin.users.edit', ['id' => $u->id]) }}"

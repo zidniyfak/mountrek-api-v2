@@ -87,7 +87,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-mountain-sun"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="{{ route('admin.mountains.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-route"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="{{ route('admin.hikingroutes.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-person-hiking"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="{{ route('admin.hikings.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="{{ route('admin.users.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

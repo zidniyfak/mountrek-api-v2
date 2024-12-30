@@ -14,7 +14,7 @@ class Hiking extends Model
         'start_date',
         'end_date',
         'numb_of_teams',
-        'notes',
+        'desc',
         'status',
         'duration'
     ];

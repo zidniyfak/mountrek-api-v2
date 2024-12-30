@@ -11,7 +11,6 @@
     <h1>Your OTP Code</h1>
     <p>Hi,</p>
     <p>Here is your OTP code to reset your password:</p>
-    <h2>{{ $name }}</h2>
     <h2>{{ $otp }}</h2>
     <p>The OTP code will expire in 15 minutes. Please use it promptly.</p>
 </body>
