@@ -39,22 +39,24 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="inputName">Nama Gunung</label>
-                                            <select class="form-control" name="mountain_id" id="mountain_id">
-                                                <option value="{{ $hikingroute->mountain->id }}" selected>
-                                                    {{ $hikingroute->mountain->name }}
-                                                </option>
-                                                @foreach ($mountains as $mountain)
-                                                    <option value="{{ $mountain->id }}">{{ $mountain->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputName">Nama Rute</label>
-                                            <input type="text" class="form-control" id="inputName" name="name"
-                                                placeholder="Masukkan nama gunung" value="{{ $hikingroute->name }}"
-                                                required>
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <label for="inputName">Nama Gunung</label>
+                                                <select class="form-control" name="mountain_id" id="mountain_id">
+                                                    <option value="{{ $hikingroute->mountain->id }}" selected>
+                                                        {{ $hikingroute->mountain->name }}
+                                                    </option>
+                                                    @foreach ($mountains as $mountain)
+                                                        <option value="{{ $mountain->id }}">{{ $mountain->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col form-group">
+                                                <label for="inputName">Nama Rute</label>
+                                                <input type="text" class="form-control" id="inputName" name="name"
+                                                    placeholder="Masukkan nama gunung" value="{{ $hikingroute->name }}"
+                                                    required>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
@@ -108,16 +110,24 @@
                                                     value="{{ $hikingroute->duration }}" required>
                                             </div>
                                             <div class="col form-group">
-                                                <label for="inputElevasi">Elevasi</label>
-                                                <input type="number" class="form-control" id="inputElevasi"
-                                                    name="elevation_gain" placeholder="Elevasi"
-                                                    value="{{ $hikingroute->elevation_gain }}" required>
-                                            </div>
-                                            <div class="col form-group">
                                                 <label for="inputOperatingHours">Waktu Operasional</label>
                                                 <input type="text" class="form-control" id="inputOperatingHours"
                                                     name="operating_hours" placeholder="Jam Operasional"
                                                     value="{{ $hikingroute->operating_hours }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <label for="inputLat">Latitude</label>
+                                                <input type="number" step="any" class="form-control" id="inputLat"
+                                                    name="lat" placeholder="Latitude" value="{{ $hikingroute->lat }}"
+                                                    required>
+                                            </div>
+                                            <div class="col form-group">
+                                                <label for="inputLongitude">Longitude</label>
+                                                <input type="number" step="any" class="form-control"
+                                                    id="inputLongitude" name="lng" placeholder="Longitude"
+                                                    value="{{ $hikingroute->lng }}" required>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -145,17 +155,16 @@
                                         <div class="row">
                                             <div class="col form-group">
                                                 <label for="inputFile">File</label>
-                                                <input type="text" step="any" class="form-control" id="inputFile"
-                                                    name="file" placeholder="File" value="{{ $hikingroute->file }}">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="inputFile"
+                                                            name="file">
+                                                        <label class="custom-file-label" for="inputFile">Pilih
+                                                            File</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col form-group">
-                                                <label for="inputLink">Link</label>
-                                                <input type="text" step="any" class="form-control" id="inputLink"
-                                                    name="link" placeholder="Link" value="{{ $hikingroute->link }}">
-                                            </div>
-                                            {{-- @if ($hikingroute->img)
-                                            @endif --}}
-                                            <div class="form-group">
                                                 <label for="inputImage">Gambar</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
@@ -169,7 +178,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Peraturan</label>
-                                            <textarea class="form-control" rows="15" name="rules" placeholder="Masukkan deskripsi gunung ..." required></textarea>
+                                            <textarea class="form-control" rows="15" name="rules" placeholder="Masukkan deskripsi gunung ..." required>{{ $hikingroute->rules }}</textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -14,25 +14,29 @@ class MountainSeeder extends Seeder
     public function run(): void
     {
         //
-        // $table->string('name', 50);
-        // $table->string('location', 50);
-        // $table->integer('altitude')->default(0);
-        // $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Tidak Aktif');
-        // $table->string('type', 50)->default("-");
-        // $table->decimal('lat', 20, 15)->default(0.0);
-        // $table->decimal('long', 20, 15)->default(0.0);
-        // $table->text('desc')->nullable();
-        // $table->string('img')->nullable();
 
         Mountain::create([
             'name' => 'Gunung Andong',
             'location' => 'Kabupaten Magelang',
             'altitude' => 1726,
             'status' => 'Tidak Aktif',
-            'type' => 'Stratovolcano',
+            'type' => 'Strato',
             'lat' => -7.389489075190794,
-            'long' => 110.37032062982256,
+            'lng' => 110.37032062982256,
             'desc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique accusantium voluptatibus dolorum a quisquam? Commodi.',
+            'img' => null,
+        ]);
+
+        Mountain::create([
+            'name' => 'Gunung Merbabu',
+            'location' => 'Kabupaten Boyolali',
+            'altitude' => 3145,
+            'status' => 'Aktif',
+            'type' => 'Strato',
+            'lat' => -7.389489075190794,
+            'lng' => 110.37032062982256,
+            'desc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique accusantium voluptatibus dolorum a quisquam? Commodi.',
+            'img' => null,
         ]);
     }
 }

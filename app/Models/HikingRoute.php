@@ -18,14 +18,14 @@ class HikingRoute extends Model
         'location',
         'distance',
         'duration',
-        'elevation_gain',
         'operating_hours',
         'numb_of_posts',
         'contact',
         'fee',
         'img',
+        'lat',
+        'lng',
         'file',
-        'link',
         'rules',
     ];
 
@@ -44,6 +44,13 @@ class HikingRoute extends Model
     {
         return Attribute::make(
             get: fn($img) => asset('/storage/hikingroutes/' . $img),
+        );
+    }
+
+    protected function file(): Attribute
+    {
+        return Attribute::make(
+            get: fn($file) => asset('/storage/gpx/' . $file),
         );
     }
 }

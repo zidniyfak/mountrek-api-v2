@@ -43,37 +43,41 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="1" checked> Nama
+                                            <input type="checkbox" class="toggle-column" data-column="1" checked>
                                             Gunung
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="2" checked>
-                                            Lokasi
+                                            Rute
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="3" checked>
+                                            Lokasi
+                                        </label>
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" class="toggle-column" data-column="4" checked>
                                             Ketinggian
                                         </label>
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="4" checked> Status
+                                            <input type="checkbox" class="toggle-column" data-column="5" checked> Status
                                         </label>
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="5" checked> Tipe
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="6" checked>
-                                            Latitude
+                                            <input type="checkbox" class="toggle-column" data-column="6" checked> Tipe
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="7" checked>
-                                            Longitude
+                                            Latitude
                                         </label>
                                         <label class="dropdown-item">
                                             <input type="checkbox" class="toggle-column" data-column="8" checked>
+                                            Longitude
+                                        </label>
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" class="toggle-column" data-column="9" checked>
                                             Deskripsi
                                         </label>
                                         <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column" data-column="9" checked> Img
+                                            <input type="checkbox" class="toggle-column" data-column="10" checked> Gambar
                                         </label>
                                     </div>
                                 </div>
@@ -124,7 +128,7 @@
                                                 <td>{{ $m->status }}</td>
                                                 <td>{{ $m->type }}</td>
                                                 <td>{{ $m->lat }}</td>
-                                                <td>{{ $m->long }}</td>
+                                                <td>{{ $m->lng }}</td>
                                                 <td class="text-start"
                                                     style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">
                                                     {{ $m->desc }}

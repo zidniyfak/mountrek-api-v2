@@ -15,19 +15,6 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // //
-        // $role_admin = Role::updateOrCreate(
-        //     [
-        //         'name' => 'admin'
-        //     ],
-        //     ['name' => 'admin']
-        // );
-        // $role_cust = Role::updateOrCreate(
-        //     [
-        //         'name' => 'cust'
-        //     ],
-        //     ['name' => 'cust']
-        // );
         // $permission = Permission::updateOrCreate(
         //     [
         //         'name' => 'view_dashboard',
@@ -53,10 +40,25 @@ class PermissionSeeder extends Seeder
 
         // $usr->assignRole('admin');
         // $usr2->assignRole('cust');
-        $role_admin = Role::updateOrCreate(['name' => 'admin']);
-        $role_cust = Role::updateOrCreate(['name' => 'cust']);
+        $role_admin = Role::updateOrCreate(
+            [
+                'name' => 'admin'
+            ],
+            ['name' => 'admin']
+        );
+        $role_cust = Role::updateOrCreate(
+            [
+                'name' => 'cust'
+            ],
+            ['name' => 'cust']
+        );
 
-        $permission_admin = Permission::updateOrCreate(['name' => 'access_admin']);
+        $permission_admin = Permission::updateOrCreate(
+            [
+                'name' => 'access_admin'
+            ],
+            ['name' => 'access_admin']
+        );
         // $permission_mountains = Permission::updateOrCreate(['name' => 'view_mountains']);
 
         $role_admin->givePermissionTo($permission_admin);

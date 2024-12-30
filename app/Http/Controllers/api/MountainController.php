@@ -12,10 +12,16 @@ use Illuminate\Support\Facades\Validator;
 
 class MountainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $mountains = Mountain::with('hiking_route')->get();
+            // $mountains = Mountain::with('hiking_route')->get();
+
+            $keyword = $request->input('keyword', '');
+            $mountains = Mountain::with('hiking_route')
+                ->when($keyword, function ($query, $keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%');
+                })->get();
             return new MountainCollection($mountains);
         } catch (\Exception $e) {
             return response()->json([

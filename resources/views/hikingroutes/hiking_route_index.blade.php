@@ -37,81 +37,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-title dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Toggle Columns
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="1" checked> Nama
-                                            Rute
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="2" checked>
-                                            Status
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="3" checked>
-                                            Kesulitan
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="4" checked> Lokasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="5" checked> Jarak
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="6" checked>
-                                            Durasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="7" checked>
-                                            Elevasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="8" checked>
-                                            Jam Operasional
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="9" checked> Jumlah Pos
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="10" checked> Kontak
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="11" checked> Biaya
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="12" checked> Img
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="13" checked> File
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="14" checked> Link
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="15" checked> Aturan
-                                        </label>
-                                    </div>
-                                </div>
-
                                 <div class="input-group input-group-sm ml-auto" style="width: 300px;">
                                     <input type="text" id="table-search-hiking-routes" class="form-control float-right"
                                         placeholder="Search">
@@ -130,22 +55,20 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>Nama Rute</th>
-                                            <th>Nama Gunung</th>
+                                            <th>Rute</th>
+                                            <th>Gunung</th>
                                             <th>Status</th>
                                             <th>Kesulitan</th>
                                             <th>Lokasi </th>
                                             <th>Jarak</th>
                                             <th>Durasi</th>
-                                            <th>Elevasi</th>
                                             <th>Jam Operasi</th>
                                             <th>Jumlah Pos</th>
                                             <th>Kontak</th>
                                             <th>Biaya</th>
-                                            <th>Img</th>
-                                            <th>File</th>
-                                            <th>Link</th>
-                                            <th>Aturan</th>
+                                            <th>Gambar</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -160,7 +83,6 @@
                                                 <td>{{ $hr->location }}</td>
                                                 <td>{{ $hr->distance }}</td>
                                                 <td>{{ $hr->duration }}</td>
-                                                <td>{{ $hr->elevation_gain }}</td>
                                                 <td>{{ $hr->operating_hours }}</td>
                                                 <td>{{ $hr->numb_of_posts }}</td>
                                                 <td>{{ $hr->contact }}</td>
@@ -171,9 +93,8 @@
                                                             style="width: 100px;">
                                                     @endif
                                                 </td>
-                                                <td>{{ $hr->file }}</td>
-                                                <td>{{ $hr->link }}</td>
-                                                <td>{{ $hr->rules }}</td>
+                                                <td>{{ $hr->lat }}</td>
+                                                <td>{{ $hr->lng }}</td>
                                                 <td style="width: 100px;">
                                                     <a href="{{ route('admin.hikingroutes.edit', ['id' => $hr->id]) }}"
                                                         class="btn btn-warning btn-edit">

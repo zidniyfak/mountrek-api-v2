@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string('location');
             $table->decimal('distance')->nullable();
             $table->decimal('duration', 5, 2)->nullable();
-            $table->integer('elevation_gain')->nullable();
-            $table->string('operating_hours', 100)->default('24 Jam');
+            $table->string('operating_hours')->default('24 Jam');
             $table->integer('numb_of_posts');
-            $table->string('contact', 100)->nullable()->default('text');
+            $table->string('contact', 15)->nullable();
             $table->integer('fee')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('lng')->nullable();
             $table->string('img')->nullable();
             $table->string('file')->nullable();
-            $table->string('link')->nullable();
             $table->text('rules')->nullable();
             $table->timestamps();
             $table->softDeletes();

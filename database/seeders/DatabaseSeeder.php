@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             MountainSeeder::class,
             HikingRouteSeeder::class,
-            HikingSeeder::class
+            HikingSeeder::class,
+            WishlistSeeder::class
         ]);
     }
 }

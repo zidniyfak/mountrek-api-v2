@@ -368,44 +368,6 @@
                     }
                 }
             });
-
-            // Tabel Hiking Routes
-            const checkboxesHikingRoutes = document.querySelectorAll('.toggle-column-hikingroutes');
-            const searchInputHikingRoutes = document.getElementById('table-search-hikingroutes');
-
-            checkboxesHikingRoutes.forEach(checkbox => {
-                const column = checkbox.getAttribute('hikingroutes-column');
-                const isVisible = localStorage.getItem(`hikingroutes-column-${column}`) !== 'hidden';
-                checkbox.checked = isVisible;
-                toggleColumnVisibilityHikingRoutes(column, isVisible);
-            });
-
-            checkboxesHikingRoutes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const column = this.getAttribute('hikingroutes-column');
-                    const isVisible = this.checked;
-                    toggleColumnVisibilityHikingRoutes(column, isVisible);
-                    localStorage.setItem(`hikingroutes-column-${column}`, isVisible ? 'visible' :
-                        'hidden');
-                });
-            });
-
-            function toggleColumnVisibilityHikingRoutes(columnIndex, show) {
-                const table = document.getElementById('table-hikingroutes');
-                const rows = table.getElementsByTagName('tr');
-
-                for (let row of rows) {
-                    const cells = row.getElementsByTagName('td');
-                    const headers = row.getElementsByTagName('th');
-
-                    if (cells.length > columnIndex) {
-                        cells[columnIndex].style.display = show ? '' : 'none';
-                    }
-                    if (headers.length > columnIndex) {
-                        headers[columnIndex].style.display = show ? '' : 'none';
-                    }
-                }
-            }
         });
     </script>
 

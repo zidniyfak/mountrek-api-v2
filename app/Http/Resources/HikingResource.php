@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class HikingResource extends JsonResource
 {
@@ -11,10 +12,10 @@ class HikingResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'start_date' => Carbon::parse($this->start_date)->format('d-m-Y'),
+            'end_date' => Carbon::parse($this->end_date)->format('d-m-Y'),
             'numb_of_teams' => $this->numb_of_teams,
-            'notes' => $this->notes,
+            'desc' => $this->desc,
             'status' => $this->status,
             'duration' => $this->duration,
             'hiking_route' => [

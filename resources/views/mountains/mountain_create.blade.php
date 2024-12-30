@@ -44,7 +44,7 @@
                                         <div class="form-group">
                                             <label for="inputLocation">Lokasi</label>
                                             <input type="text" class="form-control" id="inputLocation" name="location"
-                                                placeholder="Masukkan Provinsi" required />
+                                                placeholder="Masukkan Lokasi" required />
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
@@ -77,7 +77,7 @@
                                             <div class="col form-group">
                                                 <label for="inputLongitude">Longitude</label>
                                                 <input type="number" step="any" class="form-control"
-                                                    id="inputLongitude" name="long" placeholder="Longitude" required>
+                                                    id="inputLongitude" name="lng" placeholder="Longitude" required>
                                             </div>
                                         </div>
                                         <div class="form-group">

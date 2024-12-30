@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('mountains', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('location', 50);
+            $table->string('location');
             $table->integer('altitude')->default(0);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Tidak Aktif');
-            $table->string('type', 50)->default("-");
+            $table->enum('type', ['Maar', 'Strato', 'Perisai', 'Lainnya'])->default('Maar');
             $table->decimal('lat', 20, 15)->default(0.0);
-            $table->decimal('long', 20, 15)->default(0.0);
+            $table->decimal('lng', 20, 15)->default(0.0);
             $table->text('desc')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();

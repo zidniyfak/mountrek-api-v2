@@ -19,7 +19,7 @@ class Mountain extends Model
         'status',
         'type',
         'lat',
-        'long',
+        'lng',
         'desc',
         'img',
     ];

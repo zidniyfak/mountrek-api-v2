@@ -18,11 +18,11 @@ return new class extends Migration
             $table->date('start_date')->default(date('Y-m-d'));
             $table->date('end_date')->default(date('Y-m-d'));
             $table->integer('numb_of_teams')->default(1);
-            $table->string('notes', 255)->nullable();
+            $table->string('desc', 255)->nullable();
             $table->enum('status', [
                 'Active',
                 'Scheduled',
-                'Completed',
+                'Finished',
                 'Cancelled',
             ])->default('Scheduled');
             $table->time('duration')->nullable();

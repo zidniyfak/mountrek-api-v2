@@ -7,6 +7,7 @@ use App\Http\Resources\WishlistCollection;
 use App\Http\Resources\WishlistResource;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -20,10 +21,16 @@ class WishlistController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
             'mountain_id' => 'required|exists:mountains,id',
         ]);
-        $wishlist = Wishlist::create($request->all());
+        $wishlist = Wishlist::create(
+            [
+                'user_id' => Auth::user()->id,
+                'mountain_id' => $request->mountain_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
         return response()->json([
             'success' => true,
             'message' => 'Data wishlist berhasil ditambahkan',

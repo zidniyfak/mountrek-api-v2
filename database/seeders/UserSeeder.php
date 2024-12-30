@@ -16,19 +16,23 @@ class UserSeeder extends Seeder
     {
         //
         User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'name' => 'Zidniy',
+            'email' => 'suratalkausar@gmail.com',
             'phone_numb' => '08123456789',
             'password' => Hash::make('admin123'),
-            'img' => 'admin.png',
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         User::create([
-            'name' => 'cust',
+            'name' => 'Wahyu',
             'email' => 'cust@gmail.com',
             'phone_numb' => '08123456789',
             'password' => Hash::make('admin123'),
-            'img' => 'admin.png',
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

@@ -12,20 +12,24 @@ class HikingRouteResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img' => $this->img,
             'status' => $this->status,
             'difficulty' => $this->difficulty,
             'location' => $this->location,
-            'distance' => $this->distance,
-            'duration' => $this->duration,
-            'elevation_gain' => $this->elevation_gain,
+            'distance' => "$this->distance Km",
+            'duration' => "$this->duration Jam",
             'operating_hours' => $this->operating_hours,
             'numb_of_posts' => $this->numb_of_posts,
             'contact' => $this->contact,
             'fee' => $this->fee,
+            'lat' => $this->lat,
+            'lng' => $this->lng,
+            'img' => $this->img,
             'file' => $this->file,
-            'link' => $this->link,
             'rules' => $this->rules,
+            'mountain' => [
+                'id' => $this->mountain->id,
+                'name' => $this->mountain->name,
+            ]
         ];
     }
 }

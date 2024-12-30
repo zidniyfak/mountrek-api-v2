@@ -18,7 +18,7 @@ class HikingRouteController extends Controller
 
     public function show($id)
     {
-        $hikingroute = HikingRoute::find($id);
+        $hikingroute = HikingRoute::with('mountain')->find($id);
         return new HikingRouteResource($hikingroute);
     }
 }

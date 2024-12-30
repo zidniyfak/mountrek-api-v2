@@ -9,15 +9,6 @@ class MountainResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        //         'name',
-        // 'location',
-        // 'altitude',
-        // 'status',
-        // 'type',
-        // 'lat',
-        // 'long',
-        // 'desc',
-        // 'img',
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -26,7 +17,7 @@ class MountainResource extends JsonResource
             'status' => $this->status,
             'type' => $this->type,
             'lat' => $this->lat,
-            'long' => $this->long,
+            'lng' => $this->lng,
             'img' => $this->img,
             'description' => $this->desc,
             'hiking_routes' => $this->hiking_route->map(function ($route) {

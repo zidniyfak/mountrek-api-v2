@@ -90,8 +90,8 @@
                                                     form-group">
                                                 <label for="inputLongitude">Longitude</label>
                                                 <input type="number" step="any" class="form-control"
-                                                    id="inputLongitude" name="long" placeholder="Longitude"
-                                                    value="{{ $mountain->long }}" required>
+                                                    id="inputLongitude" name="lng" placeholder="Longitude"
+                                                    value="{{ $mountain->lng }}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">

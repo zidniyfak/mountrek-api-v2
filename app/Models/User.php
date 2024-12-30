@@ -26,6 +26,8 @@ class User extends Authenticatable
         'password',
         'phone_numb',
         'img',
+        'otp',
+        'otp_expires_at',
     ];
 
     /**
@@ -35,7 +37,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**

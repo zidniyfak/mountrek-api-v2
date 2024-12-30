@@ -37,19 +37,21 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="inputMountainId">Nama Gunung</label>
-                                            <select id="inputMountainId" name="mountain_id" class="form-control">
-                                                <option selected disabled>Pilih Gunung</option>
-                                                @foreach ($mountains as $mountain)
-                                                    <option value="{{ $mountain->id }}">{{ $mountain->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputName">Nama Rute</label>
-                                            <input type="text" class="form-control" id="inputName" name="name"
-                                                placeholder="Masukkan nama gunung" required>
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <label for="inputMountainId">Nama Gunung</label>
+                                                <select id="inputMountainId" name="mountain_id" class="form-control">
+                                                    <option selected disabled>Pilih Gunung</option>
+                                                    @foreach ($mountains as $mountain)
+                                                        <option value="{{ $mountain->id }}">{{ $mountain->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col form-group">
+                                                <label for="inputName">Nama Rute</label>
+                                                <input type="text" class="form-control" id="inputName" name="name"
+                                                    placeholder="Masukkan nama gunung" required>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
@@ -87,14 +89,21 @@
                                                     name="duration" placeholder="Durasi Pendakian" required>
                                             </div>
                                             <div class="col form-group">
-                                                <label for="inputElevasi">Elevasi</label>
-                                                <input type="number" class="form-control" id="inputElevasi"
-                                                    name="elevation_gain" placeholder="Elevasi" required>
-                                            </div>
-                                            <div class="col form-group">
                                                 <label for="inputOperatingHours">Waktu Operasional</label>
                                                 <input type="text" class="form-control" id="inputOperatingHours"
                                                     name="operating_hours" placeholder="Jam Operasional" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <label for="inputLat">Latitude</label>
+                                                <input type="number" step="any" class="form-control" id="inputLat"
+                                                    name="lat" placeholder="Latitude" required>
+                                            </div>
+                                            <div class="col form-group">
+                                                <label for="inputLongitude">Longitude</label>
+                                                <input type="number" step="any" class="form-control"
+                                                    id="inputLongitude" name="lng" placeholder="Longitude" required>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -105,8 +114,8 @@
                                             </div>
                                             <div class="col form-group">
                                                 <label for="inputContact">Kontak</label>
-                                                <input type="text" step="any" class="form-control" id="inputContact"
-                                                    name="contact" placeholder="Kontak" required>
+                                                <input type="text" step="any" class="form-control"
+                                                    id="inputContact" name="contact" placeholder="Kontak" required>
                                             </div>
                                             <div class="col form-group">
                                                 <label for="inputFee">Biaya</label>
@@ -119,15 +128,16 @@
                                         <div class="row">
                                             <div class="col form-group">
                                                 <label for="inputFile">File</label>
-                                                <input type="text" step="any" class="form-control" id="inputFile"
-                                                    name="file" placeholder="File">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="inputFile"
+                                                            name="file">
+                                                        <label class="custom-file-label" for="inputFile">Pilih
+                                                            File</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col form-group">
-                                                <label for="inputLink">Link</label>
-                                                <input type="text" step="any" class="form-control" id="inputLink"
-                                                    name="link" placeholder="Link">
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="inputImage">Gambar</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">

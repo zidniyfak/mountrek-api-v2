@@ -33,7 +33,7 @@ class AdminMountainController extends Controller
                 'status' => 'required|in:Aktif,Tidak Aktif',
                 'type' => 'required|string|max:50',
                 'lat' => 'required|numeric',
-                'long' => 'required|numeric',
+                'lng' => 'required|numeric',
                 'desc' => 'nullable|string',
                 'img' => 'nullable',
             ]
@@ -54,7 +54,7 @@ class AdminMountainController extends Controller
             'status' => $request->status,
             'type' => $request->type,
             'lat' => $request->lat,
-            'long' => $request->long,
+            'lng' => $request->lng,
             'desc' => $request->desc,
             'img' => $img->hashName(),
         ]);
@@ -80,8 +80,8 @@ class AdminMountainController extends Controller
                     'altitude' => 'required|integer',
                     'status' => 'required|in:Aktif,Tidak Aktif',
                     'type' => 'required|string|max:50',
-                    'lat' => 'required|numeric',
-                    'long' => 'required|numeric',
+                    'lat' => 'required',
+                    'lng' => 'required',
                     'desc' => 'nullable|string',
                     'img' => 'nullable',
                 ]
@@ -106,7 +106,7 @@ class AdminMountainController extends Controller
                     'status' => $request->status,
                     'type' => $request->type,
                     'lat' => $request->lat,
-                    'long' => $request->long,
+                    'lng' => $request->lng,
                     'desc' => $request->desc,
                     'img' => $img->hashName(),
                 ]);
@@ -118,7 +118,7 @@ class AdminMountainController extends Controller
                     'status' => $request->status,
                     'type' => $request->type,
                     'lat' => $request->lat,
-                    'long' => $request->long,
+                    'lng' => $request->lng,
                     'desc' => $request->desc,
                 ]);
             }
