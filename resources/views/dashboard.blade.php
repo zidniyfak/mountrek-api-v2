@@ -45,8 +45,8 @@
     </li>
     <li class="nav-item">
         <a href="{{ route('logout') }}" class="nav-link nav-danger">
-            <i class="nav-icon fa-solid fa-door-open"></i>
-            <p>
+            <i class="nav-icon fa-solid fa-door-open" style="color: red;"></i>
+            <p class="text-danger text-bold">
                 Logout
             </p>
         </a>

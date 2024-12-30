@@ -21,7 +21,7 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        {{-- <section class="content">
             <div class="container-fluid">
                 <form action="{{ route('admin.hikings.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -38,7 +38,7 @@
                                         <div class="form-group">
                                             <label for="inputName">Nama Pendaki</label>
                                             <input type="text" class="form-control" id="inputName" name="mountain_id"
-                                                placeholder="Hslo" disabled>
+                                                placeholder="Nama Pendaki">
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName">Nama Rute</label>
@@ -149,6 +149,72 @@
                 </form>
             </div>
             <!-- /.card -->
+        </section> --}}
+        <section class="content">
+            <div class="container-fluid">
+                <form action="{{ route('admin.hikings.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Form Tambah Data Pendakian</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="user_id">Nama Pendaki</label>
+                                <select class="form-control select2" id="user_id" name="user_id" required>
+                                    <option value="" disabled selected>Pilih Pendaki</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mountain_id">Gunung</label>
+                                <select class="form-control select2" id="mountain_id" name="mountain_id" required>
+                                    <option value="" disabled selected>Pilih Gunung</option>
+                                    @foreach ($mountains as $mountain)
+                                        <option value="{{ $mountain->id }}">{{ $mountain->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hiking_route_id">Rute Pendakian</label>
+                                <select class="form-control select2" id="hiking_route_id" name="hiking_route_id" required
+                                    disabled>
+                                    <option value="" disabled selected>Pilih Rute Pendakian</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="start_date">Tanggal Mulai</label>
+                                <input type="text" class="form-control datepicker" id="start_date" name="start_date"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="end_date">Tanggal Selesai</label>
+                                <input type="text" class="form-control datepicker" id="end_date" name="end_date"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="numb_of_teams">Jumlah Tim</label>
+                                <input type="number" class="form-control" id="numb_of_teams" name="numb_of_teams" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes">Catatan</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </section>
         <!-- /.content -->
     </div>

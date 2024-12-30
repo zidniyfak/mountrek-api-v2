@@ -83,13 +83,16 @@
                                 </div>
 
                                 <div class="input-group input-group-sm ml-auto" style="width: 300px;">
-                                    <input type="text" id="table-mountains-search" class="form-control float-right"
-                                        placeholder="Search">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('admin.mountains.index') }}" method="GET" class="d-flex w-100">
+                                        <input type="text" name="search" id="table-search-users"
+                                            class="form-control float-right" placeholder="Search"
+                                            value="{{ request('search') }}">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 

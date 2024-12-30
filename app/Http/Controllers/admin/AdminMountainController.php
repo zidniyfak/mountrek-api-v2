@@ -10,13 +10,29 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminMountainController extends Controller
 {
-    //
-    public function index()
+    // public function index()
+    // {
+    //     $mountains = Mountain::all();
+    //     return view('mountains.mountain_index', compact('mountains'));
+    // }
+    public function index(Request $request)
     {
-        $mountains = Mountain::all();
+        $search = $request->input('search');
+
+        $mountains = Mountain::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%")
+                ->orWhere('location', 'like', "%{$search}%")
+                ->orWhere('altitude', 'like', "%{$search}%")
+                ->orWhere('status', 'like', "%{$search}%")
+                ->orWhere('type', 'like', "%{$search}%")
+                ->orWhereHas('hiking_route', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+        })->get();
 
         return view('mountains.mountain_index', compact('mountains'));
     }
+
     public function create()
     {
         return view('mountains.mountain_create');

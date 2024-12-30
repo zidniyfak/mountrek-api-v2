@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminHikingRouteController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminMountainController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\admin\ApiMountainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,4 +69,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'as' 
     Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::get('/api/mountains/{mountain}/hikingroutes', [ApiMountainController::class, 'getHikingRoutes']);
 // Route::get('/mountains', [AdminMountainController::class, 'index'])->name('mountains');

@@ -37,7 +37,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        // 'remember_token',
+        'remember_token',
     ];
 
     /**
@@ -62,5 +62,12 @@ class User extends Authenticatable
     public function hiking()
     {
         return $this->hasMany(Hiking::class);
+    }
+
+    protected function img(): Attribute
+    {
+        return Attribute::make(
+            get: fn($img) => asset('/storage/users/' . $img),
+        );
     }
 }

@@ -28,10 +28,11 @@
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Email" name="password">
+                        <input type="password" class="form-control" placeholder="Masukkan password baru"
+                            name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
@@ -39,7 +40,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Simpan</button>
                         </div>
                         <!-- /.col -->
                     </div>

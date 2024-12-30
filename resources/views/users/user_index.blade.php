@@ -36,89 +36,17 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-title dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Toggle Columns
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="1" checked> Nama
-                                            Rute
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="2" checked>
-                                            Status
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="3" checked>
-                                            Kesulitan
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="4" checked> Lokasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="5" checked> Jarak
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="6" checked>
-                                            Durasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="7" checked>
-                                            Elevasi
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="8" checked>
-                                            Jam Operasional
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="9" checked> Jumlah Pos
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="10" checked> Kontak
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="11" checked> Biaya
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="12" checked> Img
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="13" checked> File
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="14" checked> Link
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="checkbox" class="toggle-column-hikingroutes"
-                                                hikingroutes-column="15" checked> Aturan
-                                        </label>
-                                    </div>
-                                </div>
-
                                 <div class="input-group input-group-sm ml-auto" style="width: 300px;">
-                                    <input type="text" id="table-search-users" class="form-control float-right"
-                                        placeholder="Search">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('admin.users.index') }}" method="GET" class="d-flex w-100">
+                                        <input type="text" name="search" id="table-search-users"
+                                            class="form-control float-right" placeholder="Search"
+                                            value="{{ request('search') }}">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -144,12 +72,10 @@
                                                 <td>{{ $u->email }}</td>
                                                 <td>{{ $u->phone_numb }}</td>
                                                 <td>
-                                                    {{-- @if ($u->img)
+                                                    @if ($u->img)
                                                         <img src="{{ $u->img }}" alt="{{ $u->name }}"
                                                             style="width: 100px;">
-                                                    @endif --}}
-                                                    <img src="{{ Storage::url('users/default.jpg') }}"
-                                                        style="width: 100px;">
+                                                    @endif
                                                 </td>
 
                                                 <td style="width: 100px;">
@@ -202,7 +128,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
                                 <a href="{{ route('admin.users.create') }}" class="btn btn-primary float-right">Tambah
-                                    Data Users</a>
+                                    Data User</a>
                             </div>
                         </div>
                         <!-- /.card -->

@@ -12,9 +12,25 @@ use Illuminate\Support\Facades\Validator;
 class AdminHikingRouteController extends Controller
 {
     //
-    public function index()
+    // public function index()
+    // {
+    //     $hikingroutes = HikingRoute::with('mountain')->get();
+    //     return view('hikingroutes.hiking_route_index', compact('hikingroutes'));
+    // }
+    public function index(Request $request)
     {
-        $hikingroutes = HikingRoute::with('mountain')->get();
+        $search = $request->input('search');
+
+        $hikingroutes = HikingRoute::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%")
+                ->orWhere('location', 'like', "%{$search}%")
+                ->orWhere('difficulty', 'like', "%{$search}%")
+                ->orWhere('status', 'like', "%{$search}%")
+                ->orWhereHas('mountain', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+        })->get();
+
         return view('hikingroutes.hiking_route_index', compact('hikingroutes'));
     }
 

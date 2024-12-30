@@ -12,16 +12,39 @@ use Illuminate\Support\Facades\Validator;
 class AdminHikingController extends Controller
 {
     //
-    public function index()
+    // public function index()
+    // {
+    //     $hikings = Hiking::with(['hiking_route.mountain', 'user'])->get();
+    //     return view('hikings.hiking_index', compact('hikings'));
+    // }
+
+    public function index(Request $request)
     {
-        $hikings = Hiking::with(['hiking_route.mountain', 'user'])->get();
+        $search = $request->input('search');
+
+        $hikings = Hiking::when($search, function ($query, $search) {
+            return $query->where('status', 'like', "%{$search}%")
+                ->orWhere('start_date', 'like', "%{$search}%")
+                ->orWhere('end_date', 'like', "%{$search}%")
+                ->orWhereHas('hiking_route', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhereHas('mountain', function ($query) use ($search) {
+                            $query->where('name', 'like', "%{$search}%");
+                        });
+                });
+        })->with(['hiking_route.mountain', 'user'])->get();
+
         return view('hikings.hiking_index', compact('hikings'));
     }
 
     public function create()
     {
-        $user = User::all();
-        return view('hikings.hiking_create', compact('user'));
+        $users = User::all(); // Untuk dropdown user
+        $mountains = Mountain::all(); // Untuk dropdown mountain
+
+        return view('hikings.hiking_create', compact('users', 'mountains'));
+        // $user = User::all();
+        // return view('hikings.hiking_create', compact('user'));
     }
 
     public function store(Request $request)
@@ -35,8 +58,6 @@ class AdminHikingController extends Controller
                 'end_date' => 'required|date',
                 'numb_of_teams' => 'required|integer',
                 'notes' => 'nullable|string',
-                'status' => 'required',
-                'duration' => 'required|integer',
             ]
         );
 
@@ -50,8 +71,6 @@ class AdminHikingController extends Controller
             'end_date' => $request->end_date,
             'numb_of_teams' => $request->numb_of_teams,
             'notes' => $request->notes,
-            'status' => $request->status,
-            'duration' => $request->duration,
         ]);
 
         return redirect()->route('admin.hikings.index')->with('success', 'Data berhasil ditambahkan');
